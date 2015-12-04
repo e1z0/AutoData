@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<worklist>
+<work>
+<name><![CDATA[Nokia RM-2951]]></name>
+<description><![CDATA[Nokia softo atnaujinimas]]></description>
+<job><![CDATA[data]]></job>
+<todir><![CDATA[igo\data\maps]]></todir>
+<exec><![CDATA[exec.cmd]]></exec>
+<update><![CDATA[2015.12.04]]></update>
+</work>
+</worklist>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<worklist>
+<work>
+<name><![CDATA[Pavadinimas]]></name>
+<description><![CDATA[Produkto aprasymas]]></description>
+<job><![CDATA[katalogo pavadinimas]]></job>
+<todir><![CDATA[kur\deti\katalogo\failus]]></todir>
+<exec><![CDATA[ar leisti exec.cmd]]></exec>
+<update><![CDATA[2015.12.04]]></update>
+</work>
+</worklist>

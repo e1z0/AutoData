@@ -1,0 +1,7 @@
+E:\projects\AutoData\AutoData\bin\Release\AutoData.exe
+E:\projects\AutoData\AutoData\bin\Release\AutoData.pdb
+E:\projects\AutoData\AutoData\obj\x86\Release\AutoData.Form1.resources
+E:\projects\AutoData\AutoData\obj\x86\Release\AutoData.Properties.Resources.resources
+E:\projects\AutoData\AutoData\obj\x86\Release\AutoData.csproj.GenerateResource.Cache
+E:\projects\AutoData\AutoData\obj\x86\Release\AutoData.exe
+E:\projects\AutoData\AutoData\obj\x86\Release\AutoData.pdb
