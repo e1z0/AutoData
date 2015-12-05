@@ -5,3 +5,5 @@ E:\projects\AutoData\AutoData\obj\x86\Release\AutoData.Properties.Resources.reso
 E:\projects\AutoData\AutoData\obj\x86\Release\AutoData.csproj.GenerateResource.Cache
 E:\projects\AutoData\AutoData\obj\x86\Release\AutoData.exe
 E:\projects\AutoData\AutoData\obj\x86\Release\AutoData.pdb
+E:\projects\AutoData\AutoData\obj\x86\Release\AutoData.csprojResolveAssemblyReference.cache
+E:\projects\AutoData\AutoData\obj\x86\Release\AutoData.Form2.resources

@@ -164,7 +164,7 @@ namespace AutoData
 
         private void Form1_DoubleClick(object sender, EventArgs e)
         {
-            MessageBox.Show("Copyright (c) devnull (justinas@res.lt) 2015", "About", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("Copyright (c) devnull (justinas@res.lt) Build: "+System.IO.File.GetLastWriteTime(System.Reflection.Assembly.GetExecutingAssembly().Location), "About", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -172,7 +172,9 @@ namespace AutoData
             string elementas = baze + "\\" + comboBox1.Text + "\\info.xml";
             if (File.Exists(elementas))
             {
-                System.Diagnostics.Process.Start("notepad.exe", elementas);
+                Form2 frm2 = new Form2();
+                frm2.configas = elementas;                
+                frm2.Show();
             }
             else
             {
@@ -190,10 +192,11 @@ namespace AutoData
                     sw.WriteLine("<update><![CDATA[2015.12.04]]></update>");
                     sw.WriteLine("</work>");
                     sw.WriteLine("</worklist>");
-
                     sw.Close();
                 }
-                System.Diagnostics.Process.Start("notepad.exe", elementas);
+                Form2 frm2 = new Form2();
+                frm2.configas = elementas;
+                frm2.Show();
             }
 
         }
