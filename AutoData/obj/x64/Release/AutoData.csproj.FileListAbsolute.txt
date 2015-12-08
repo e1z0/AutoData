@@ -1,0 +1,9 @@
+e:\projects\AutoData\AutoData\bin\x64\Release\AutoData.exe
+e:\projects\AutoData\AutoData\bin\x64\Release\AutoData.pdb
+e:\projects\AutoData\AutoData\obj\x64\Release\AutoData.csprojResolveAssemblyReference.cache
+e:\projects\AutoData\AutoData\obj\x64\Release\AutoData.Form1.resources
+e:\projects\AutoData\AutoData\obj\x64\Release\AutoData.Form2.resources
+e:\projects\AutoData\AutoData\obj\x64\Release\AutoData.Properties.Resources.resources
+e:\projects\AutoData\AutoData\obj\x64\Release\AutoData.csproj.GenerateResource.Cache
+e:\projects\AutoData\AutoData\obj\x64\Release\AutoData.exe
+e:\projects\AutoData\AutoData\obj\x64\Release\AutoData.pdb

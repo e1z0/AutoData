@@ -33,7 +33,7 @@ namespace AutoData
             ArrayList folderiai = new ArrayList();
             foreach (string dir in Directory.GetDirectories(appPath))
             {
-                
+
                 // kerpam kelia iki paskutinio katalogo
                 folderiai.Add(dir.Remove(0, dir.LastIndexOf('\\') + 1));
             }
@@ -56,67 +56,69 @@ namespace AutoData
             string elementas = baze + "\\" + comboBox1.Text + "\\info.xml";
             try
             {
-                if (File.Exists(elementas)) {
-                    textBox1.Text = "File: "+elementas+ "\r\n";           
+                if (File.Exists(elementas))
+                {
+                    textBox1.Text = "";           
                     XElement xml = XElement.Load(elementas);
                     var jobs = xml.Descendants("work");
                     foreach (var p in jobs)
                     {
-                       var name = p.Element("name").Value;
-                       var description = p.Element("description").Value;
-                       var job = p.Element("job").Value;
-                       var exec = p.Element("exec").Value;
-                       var update = p.Element("update").Value;
-                       textBox1.Text = textBox1.Text + "Name: " + name +"\r\nDescription: "+description+"\r\nJobs: "+job+"\r\nExec: "+exec+"\r\nUpdate: "+update;
+                        var name = p.Element("name").Value;
+                        var description = p.Element("description").Value;
+                        var job = p.Element("job").Value;
+                        var todir = p.Element("todir").Value;
+                        var exec = p.Element("exec").Value;
+                        var update = p.Element("update").Value;
+                        textBox1.Text = textBox1.Text + "Name: " + name + "\r\nDescription: " + description + "\r\nCopy from: " + job + "\r\nCopy to: " + todir + "\r\nExec: " + exec + "\r\nUpdate: " + update;
                     }
-                    
+
                 }
                 else
                 {
-                    MessageBox.Show("Failas nerastas");
+                    MessageBox.Show("Information file not found!", "FAIL!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (Exception)
             {
-                MessageBox.Show("Information file not found!", "FAIL!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Information file is corrupted!", "FAIL!", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             }
 
         }
 
-            private static void DirectoryCopy(string sourceDirName, string destDirName, bool copySubDirs)
-    {
-        DirectoryInfo dir = new DirectoryInfo(sourceDirName);
-
-        if (!dir.Exists)
+        private static void DirectoryCopy(string sourceDirName, string destDirName, bool copySubDirs)
         {
-            throw new DirectoryNotFoundException(
-                "Source directory does not exist or could not be found: "
-                + sourceDirName);
-        }
+            DirectoryInfo dir = new DirectoryInfo(sourceDirName);
 
-        DirectoryInfo[] dirs = dir.GetDirectories();
-        if (!Directory.Exists(destDirName))
-        {
-            Directory.CreateDirectory(destDirName);
-        }
-
-        FileInfo[] files = dir.GetFiles();
-        foreach (FileInfo file in files)
-        {
-            string temppath = Path.Combine(destDirName, file.Name);
-            file.CopyTo(temppath, false);
-        }
-
-        if (copySubDirs)
-        {
-            foreach (DirectoryInfo subdir in dirs)
+            if (!dir.Exists)
             {
-                string temppath = Path.Combine(destDirName, subdir.Name);
-                DirectoryCopy(subdir.FullName, temppath, copySubDirs);
+                throw new DirectoryNotFoundException(
+                    "Source directory does not exist or could not be found: "
+                    + sourceDirName);
+            }
+
+            DirectoryInfo[] dirs = dir.GetDirectories();
+            if (!Directory.Exists(destDirName))
+            {
+                Directory.CreateDirectory(destDirName);
+            }
+
+            FileInfo[] files = dir.GetFiles();
+            foreach (FileInfo file in files)
+            {
+                string temppath = Path.Combine(destDirName, file.Name);
+                file.CopyTo(temppath, false);
+            }
+
+            if (copySubDirs)
+            {
+                foreach (DirectoryInfo subdir in dirs)
+                {
+                    string temppath = Path.Combine(destDirName, subdir.Name);
+                    DirectoryCopy(subdir.FullName, temppath, copySubDirs);
+                }
             }
         }
-    }
 
 
         private void button1_Click(object sender, EventArgs e)
@@ -128,7 +130,7 @@ namespace AutoData
             {
                 if (File.Exists(elementas))
                 {
-                    textBox1.Text = "File: " + elementas + "\r\n";
+                    textBox1.Text = "Copying data...";
                     XElement xml = XElement.Load(elementas);
                     var jobs = xml.Descendants("work");
                     foreach (var p in jobs)
@@ -144,9 +146,11 @@ namespace AutoData
                         {
                             DirectoryCopy(elemdir, comboBox2.Text + todir, true);
                         }
-                        if (File.Exists(System.IO.Path.GetDirectoryName(elementas)+"\\"+exec))
-                            System.Diagnostics.Process.Start(System.IO.Path.GetDirectoryName(elementas)+"\\"+exec, "\""+System.IO.Path.GetDirectoryName(elementas)+"\\"+job+"\" " +comboBox2.Text + " " +todir);
+                        if (File.Exists(System.IO.Path.GetDirectoryName(elementas) + "\\" + exec))
+                            System.Diagnostics.Process.Start(System.IO.Path.GetDirectoryName(elementas) + "\\" + exec, "\"" + System.IO.Path.GetDirectoryName(elementas) + "\\" + job + "\" " + comboBox2.Text + " " + todir);
                     }
+                    textBox1.Text = "Copy Done!";
+                    MessageBox.Show("Done!", "Info!", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 }
                 else
@@ -164,7 +168,7 @@ namespace AutoData
 
         private void Form1_DoubleClick(object sender, EventArgs e)
         {
-            MessageBox.Show("Copyright (c) devnull (justinas@res.lt) Build: "+System.IO.File.GetLastWriteTime(System.Reflection.Assembly.GetExecutingAssembly().Location), "About", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("Copyright (c) justinas@eofnet.lt 2015");
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -173,7 +177,7 @@ namespace AutoData
             if (File.Exists(elementas))
             {
                 Form2 frm2 = new Form2();
-                frm2.configas = elementas;                
+                frm2.configas = elementas;
                 frm2.Show();
             }
             else
@@ -201,6 +205,31 @@ namespace AutoData
 
         }
 
+        private void button4_Click(object sender, EventArgs e)
+        {
+            string elementas = baze + "\\" + comboBox1.Text;
+            try
+            {
+                if (Directory.Exists(elementas)) {
+                    System.Diagnostics.Process.Start(elementas);
+
+                }
+                else
+                {
+                    MessageBox.Show("Directory not found!", "FAIL!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Ouch!!", "FAIL!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        }
 
     }
-}
+
+    
+
+
+    
+    
